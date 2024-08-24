@@ -7,8 +7,10 @@ pub struct Metadata {
     #[prost(string, tag = "8")]
     pub client_ip: ::prost::alloc::string::String,
     #[prost(map = "string, string", tag = "7")]
-    pub headers:
-        ::std::collections::HashMap<::prost::alloc::string::String, ::prost::alloc::string::String>,
+    pub headers: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -21,8 +23,8 @@ pub struct Payload {
 /// Generated client implementations.
 pub mod request_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     #[derive(Debug, Clone)]
     pub struct RequestClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -66,8 +68,9 @@ pub mod request_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             RequestClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -107,17 +110,19 @@ pub mod request_client {
             &mut self,
             request: impl tonic::IntoRequest<super::Payload>,
         ) -> std::result::Result<tonic::Response<super::Payload>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static("/Request/request");
             let mut req = request.into_request();
-            req.extensions_mut()
-                .insert(GrpcMethod::new("Request", "request"));
+            req.extensions_mut().insert(GrpcMethod::new("Request", "request"));
             self.inner.unary(req, path, codec).await
         }
     }
@@ -125,8 +130,8 @@ pub mod request_client {
 /// Generated client implementations.
 pub mod bi_request_stream_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::http::Uri;
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     #[derive(Debug, Clone)]
     pub struct BiRequestStreamClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -170,8 +175,9 @@ pub mod bi_request_stream_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             BiRequestStreamClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -214,14 +220,19 @@ pub mod bi_request_stream_client {
             tonic::Response<tonic::codec::Streaming<super::Payload>>,
             tonic::Status,
         > {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/BiRequestStream/requestBiStream");
+            let path = http::uri::PathAndQuery::from_static(
+                "/BiRequestStream/requestBiStream",
+            );
             let mut req = request.into_streaming_request();
             req.extensions_mut()
                 .insert(GrpcMethod::new("BiRequestStream", "requestBiStream"));
